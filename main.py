@@ -17,8 +17,6 @@ R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL")  # tipo https://pub-xxx.r2.dev
 # SUPABASE
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-print("SUPABASE_URL:", SUPABASE_URL)
-print("SUPABASE_KEY:", SUPABASE_KEY)
 
 supabase: Client = None
 
