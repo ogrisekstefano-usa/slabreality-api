@@ -43,15 +43,19 @@ class Material(BaseModel):
 
 @app.post("/materials")
 def create_material(material: Material):
-    data = supabase.table("materials").insert({
-        "name": material.name,
-        "category": material.category,
-        "color": material.color,
-        "finish": material.finish,
-        "image_url": material.image_url
-    }).execute()
+    try:
+        response = supabase.table("materials").insert({
+            "name": material.name,
+            "category": material.category,
+            "color": material.color,
+            "finish": material.finish,
+            "image_url": material.image_url
+        }).execute()
 
-    return data
+        return response.data
+
+    except Exception as e:
+        return {"error": str(e)}
 
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
