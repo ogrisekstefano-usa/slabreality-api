@@ -62,7 +62,8 @@ from pydantic import BaseModel
 class Material(BaseModel):
     name: str
     category: str
-    color: str
+    color_name: str
+    color_hex: str
     finish: str
     image_url: str
 
