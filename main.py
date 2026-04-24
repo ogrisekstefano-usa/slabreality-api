@@ -31,6 +31,28 @@ s3 = boto3.client(
 def root():
     return {"status": "SlabReality API is running"}
 
+from pydantic import BaseModel
+
+class Material(BaseModel):
+    name: str
+    category: str
+    color: str
+    finish: str
+    image_url: str
+
+
+@app.post("/materials")
+def create_material(material: Material):
+    data = supabase.table("materials").insert({
+        "name": material.name,
+        "category": material.category,
+        "color": material.color,
+        "finish": material.finish,
+        "image_url": material.image_url
+    }).execute()
+
+    return data
+
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
     file_bytes = await file.read()
