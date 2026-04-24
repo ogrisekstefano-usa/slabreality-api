@@ -17,6 +17,8 @@ R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL")  # tipo https://pub-xxx.r2.dev
 # SUPABASE
 SUPABASE_URL = "https://qzxcazacujjieafoqbrh.supabase.co"
 SUPABASE_KEY = "sb_publishable_7NZtJmgog-Z5FO_-Y39LxA_IV7YbPZW"
+print("SUPABASE_URL:", SUPABASE_URL)
+print("SUPABASE_KEY:", SUPABASE_KEY)
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
