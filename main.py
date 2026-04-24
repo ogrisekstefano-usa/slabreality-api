@@ -22,12 +22,12 @@ print("SUPABASE_KEY:", SUPABASE_KEY)
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-s3 = boto3.client(
-    "s3",
-    endpoint_url=R2_ENDPOINT,
-    aws_access_key_id=R2_ACCESS_KEY,
-    aws_secret_access_key=R2_SECRET_KEY
-)
+#s3 = boto3.client(
+#    "s3",
+#    endpoint_url=R2_ENDPOINT,
+#    aws_access_key_id=R2_ACCESS_KEY,
+#    aws_secret_access_key=R2_SECRET_KEY
+#)
 
 @app.get("/")
 def root():
