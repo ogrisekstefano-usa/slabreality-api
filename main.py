@@ -15,12 +15,17 @@ R2_ENDPOINT = os.getenv("R2_ENDPOINT")  # tipo https://xxxx.r2.cloudflarestorage
 R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL")  # tipo https://pub-xxx.r2.dev
 
 # SUPABASE
-SUPABASE_URL = os.getenv("https://qzxcazacujjieafoqbrh.supabase.co")
-SUPABASE_KEY = os.getenv("sb_publishable_7NZtJmgog-Z5FO_-Y39LxA_IV7YbPZW")
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 print("SUPABASE_URL:", SUPABASE_URL)
 print("SUPABASE_KEY:", SUPABASE_KEY)
 
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+supabase: Client = None
+
+@app.on_event("startup")
+def startup_event():
+    global supabase
+    supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 #s3 = boto3.client(
 #    "s3",
