@@ -1,4 +1,5 @@
 from fastapi import FastAPI, UploadFile, File
+from fastapi.responses import FileResponse
 import os
 
 app = FastAPI()
@@ -24,4 +25,5 @@ async def upload_file(file: UploadFile = File(...)):
 
 @app.get("/files/{filename}")
 def get_file(filename: str):
-    return {"file_url": f"/uploads/{filename}"}
+    file_path = os.path.join(UPLOAD_FOLDER, filename)
+    return FileResponse(file_path)
