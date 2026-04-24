@@ -76,4 +76,11 @@ async def upload_file(file: UploadFile = File(...)):
     return {
         "filename": file.filename,
         "url": f"{R2_PUBLIC_URL}/{file.filename}"
+
+        
+@app.get("/materials")
+def get_materials():
+    data = supabase.table("materials").select("*").execute()
+    return data
+        
     }
