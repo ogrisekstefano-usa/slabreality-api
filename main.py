@@ -74,7 +74,8 @@ def create_material(material: Material):
         response = supabase.table("materials").insert({
             "name": material.name,
             "category": material.category,
-            "color": material.color,
+            "color_name": material.color_name,
+            "color_hex": material.color_hex,
             "finish": material.finish,
             "image_url": material.image_url
         }).execute()
@@ -129,7 +130,8 @@ async def upload_file(file: UploadFile = File(...)):
 async def create_material_with_file(
     name: str = Form(...),
     category: str = Form(...),
-    color: str = Form(...),
+    color_name: str = Form(...),
+    color_hex: str = Form(...),
     finish: str = Form(...),
     file: UploadFile = File(...)
 ):
@@ -151,7 +153,8 @@ async def create_material_with_file(
         response = supabase.table("materials").insert({
             "name": name,
             "category": category,
-            "color": color,
+            "color_name": color_name,
+            "color_hex": color_hex,
             "finish": finish,
             "image_url": image_url
         }).execute()
